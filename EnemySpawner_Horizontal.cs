@@ -4,10 +4,55 @@ using UnityEngine;
 
 public class EnemySpawner_Horizontal : MonoBehaviour
 {
+    const float MinY = -10.0f;
+    const float MaxY = 10.0f;
     const float a = 0.5f;
     const float b = -0.5f;
     const float c = 10.0f;
     const float d = -10.0f;
+
+    public GameObject emenyPrefab;
+    public float interval = 0.5f;
+
+    int spawnCounter = 0;
+
+    private void Awake()
+    {
+        float rand = Random.Range(-7.0f, 7.0f);  // 랜덤으로 -7 ~ 7
+    }
+
+    private void Start()
+    {
+        spawnCounter = 0;
+
+        StartCoroutine(SpawnCoroutine());   //코루틴 실행하기
+    }
+
+    IEnumerator SpawnCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(interval);  //interval 만큼 기다린 후
+            Spawn();                                    // Spawn 실행
+        }
+    }
+
+    void Spawn()
+    {
+        GameObject obj = Instantiate(emenyPrefab, GetSpawnPosition(), Quaternion.identity); // 생성
+        obj.transform.SetParent(transform); // 부모 설정
+        obj.name = $"Enemy_{spawnCounter}"; // 게임 오브젝트 이름 바꾸기
+        spawnCounter++;
+
+    }
+
+    Vector3 GetSpawnPosition()
+    {
+        Vector3 pos = transform.position;
+        pos.x += Random.Range(MinY, MaxY);  // 현재 위치에서 높이만 (-4 ~ +4) 변경
+
+        return pos;
+    }
 
     private void OnDrawGizmos()
     {
