@@ -11,7 +11,7 @@ public class EnemySpawner_Horizontal : MonoBehaviour
     const float c = 10.0f;
     const float d = -10.0f;
 
-    public GameObject emenyPrefab;
+    public GameObject enemyPrefab;
     public float interval = 0.5f;
 
     int spawnCounter = 0;
@@ -39,7 +39,7 @@ public class EnemySpawner_Horizontal : MonoBehaviour
 
     void Spawn()
     {
-        GameObject obj = Instantiate(emenyPrefab, GetSpawnPosition(), Quaternion.identity); // 생성
+        GameObject obj = Instantiate(enemyPrefab, GetSpawnPosition(), Quaternion.identity); // 생성
         obj.transform.SetParent(transform); // 부모 설정
         obj.name = $"Enemy_{spawnCounter}"; // 게임 오브젝트 이름 바꾸기
         spawnCounter++;

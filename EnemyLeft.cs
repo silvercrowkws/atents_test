@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLeft : MonoBehaviour
+public class EnemyLeft : RecycleObject
 {
     public float moveSpeed = 3f; // 적(Enemy)의 이동 속도
     private Vector3 moveDirection; // 적(Enemy)의 이동 방향
@@ -25,7 +25,7 @@ public class EnemyLeft : MonoBehaviour
     private void SetRandomDirection()
     {
         // 무작위 방향 설정
-        float randomAngle = Random.Range(0f, 180f);
+        float randomAngle = Random.Range(90f, 270f);
         moveDirection = Quaternion.Euler(0f, 0f, randomAngle) * Vector3.right;
     }
 }

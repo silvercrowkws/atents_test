@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDown : MonoBehaviour
+public class EnemyDown : RecycleObject
 {
     public float moveSpeed = 3f; // 적(Enemy)의 이동 속도
     private Vector3 moveDirection; // 적(Enemy)의 이동 방향
